@@ -1,0 +1,79 @@
+/*******************************************************************************
+* Name:		           Kieter Philip Balisnomo
+* ONE Card number:   	   1431294
+* Unix ID: 	   	   balisnom
+* Lecture section:   	   A1
+* Lab section:	   	   D06
+* TA names: 	   	   Andrew Whittle and Sepideh Heydarabad
+*******************************************************************************/
+				     												 *
+                               --USER GUIDE--
+--------------------------------------------------------------------------------
+Compile by typing make.
+
+Ensure the executable lander and an input file is in the current directory, and 
+run by typing.
+
+./lander -g +FLOAT -t -FLOAT -f INPUT_FILE.txt [-i]
+
+Where the FLOAT for -g is positive and the FLOAT for -t is negative and the
+input_file is a valid text file as specified in the assignment 3 specification.
+An example input file, landscape.txt, is provided for convenience.
+				     												 *
+                              --DESCRIPTION--
+--------------------------------------------------------------------------------
+The executable ./lander is a C implementation of the game Lunar Lander. It is 
+built from the following modules:
+
+a3.c
+	- Reads in arguments that are provided to the executable (gravity, thrust, 
+		the inputfile name, and the optional improved option).
+	- Uses ncurses and sketchpad to play the game (up and space to thrust, left 
+		and right to rotate.)
+
+ship.c
+	- Deals with drawing and updating all of the necessary images to sketchpad 
+		(ship, thrust, landscape) and the improved images if -i is specified 
+		(stars, fuel bar, boost bar)
+
+intersect.c
+	 - Checks for intersections between the landscape and the ship.
+
+timer.c
+	- The physics of the ship alter every 0.05 seconds using a signal handler. 
+		Updates the ship's position, checks for intersection, win conditions, and 
+		ensures that the ship stays within the bounds of sketchpad at all times.
+
+My improvements included the following (specify the -i option to use them):
+
+Stars
+	- The stars are randomly generated and are placed near the top of the screen.
+		They make it feel more like space.
+
+Colours
+	- Everything in the game is coloured. 
+
+Fuel Bar
+	- The player can only thrust if they have any fuel and the fuel gauge 
+		decreases as the player thrusts. Makes the game more difficult.
+
+Boost Bar
+	- If the player pushes the 'b' key, their ship will travel at triple the 
+		provided thrust specified (the argument of the -t option) and will turn
+		the colour of the thrust to orange.
+		This gauge very quickly decreases and is only intended for use in a close 
+		call.
+--------------------------------------------------------------------------------				   
+                                     *
+                               --REFERENCES--
+--------------------------------------------------------------------------------
+The provided C files (ball.c, test_curses.c, timer.c) and the lander executable
+	- Used as reference to observe the 
+
+http://www.rapidtables.com/web/color/RGB_Color.htm
+ - Used to get RGB values for colours that I liked.
+
+Bennett Hreherchuck
+ - "Moral support" and we also sat together all of reading week (and so on...)
+ 		until we finished this assignment.
+
